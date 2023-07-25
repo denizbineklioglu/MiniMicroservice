@@ -1,0 +1,6 @@
+Ports
+
+-- Product	API : 5174
+-- Customer API : 5271
+-- MVC : 5285
+-- Gateway : 5170

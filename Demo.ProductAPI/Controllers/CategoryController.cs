@@ -49,12 +49,13 @@ namespace Demo.ProductAPI.Controllers
             return BadRequest();
         }
 
-        [HttpDelete("[action]")]
+        [HttpDelete("[action]/{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
             if (id != null)
             {
                 await _service.DeleteCategory(id);
+                return Ok();
             }
             return BadRequest();    
         }
