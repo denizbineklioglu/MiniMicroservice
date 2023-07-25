@@ -11,6 +11,7 @@ namespace Demo.CustomerAPI.Services.Mapping
         {
             CreateMap<UserLoginRequest, AppUser>();
             CreateMap<UserRegisterRequest, AppUser>();
+            CreateMap<UserAddRequest, AppUser>();
         }
     }
 }

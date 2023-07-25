@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Demo.CustomerAPI.Context.Repositories;
 using Demo.CustomerAPI.Model;
 using Demo.CustomerAPI.Model.dto;
 using Microsoft.AspNetCore.Identity;
@@ -7,25 +8,37 @@ namespace Demo.CustomerAPI.Services
 {
     public class UserService : IUserService
     {
-        private readonly UserManager<AppUser> _userManager;
-        private readonly SignInManager<AppUser> _signInManager;
+        private readonly IUserRepository _repo;
         private readonly IMapper _mapper;
-        public UserService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,IMapper mapper)
+        public UserService(IUserRepository repo,IMapper mapper)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
+            _repo = repo;
             _mapper = mapper;
         }
 
-        public async Task Login(UserLoginRequest model)
+        public async Task CreateUser(UserAddRequest model)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.UserName,model.Password,false,true);
+            var user = _mapper.Map<AppUser>(model);
+            await _repo.Add(user);
         }
 
-        public async Task Register(UserRegisterRequest model)
+        public async Task Delete(int id)
         {
-            var user = _mapper.Map<AppUser>(model); 
-            var result = await _userManager.CreateAsync(user,model.Password);
+            var user = await _repo.GetByID(id);
+            if (user != null)
+            {
+                await _repo.Delete(user);
+            }
+        }
+
+        public async Task<AppUser> GetById(int id)
+        {
+            return await _repo.GetByID(id);
+        }
+
+        public async Task<IEnumerable<AppUser>> GetUsers()
+        {
+            return await _repo.GetList();
         }
     }
 }

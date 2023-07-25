@@ -1,4 +1,5 @@
 using Demo.CustomerAPI.Context;
+using Demo.CustomerAPI.Context.Repositories;
 using Demo.CustomerAPI.Model;
 using Demo.CustomerAPI.Services;
 using Demo.CustomerAPI.Services.Mapping;
@@ -15,6 +16,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(typeof(MapProfile));
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 var connectionString = builder.Configuration.GetConnectionString("PostgreSql");
 builder.Services.AddEntityFrameworkNpgsql().AddDbContext<CustomerDbContext>(opt =>
