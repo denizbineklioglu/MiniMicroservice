@@ -1,7 +1,16 @@
+using Demo.MVC.Services;
+using Microsoft.Build.Framework;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddHttpClient();
+
+builder.Services.AddScoped<IProductService, ProductService>();
+
 
 var app = builder.Build();
 
