@@ -43,5 +43,11 @@ namespace Demo.ProductAPI.Services
             var categories = await _repo.GetList();
             return _mapper.Map<IEnumerable<CategoryListResponse>>(categories);
         }
+
+        public async Task UpdateCategory(CategoryUpdateDto model)
+        {
+            var category = _mapper.Map<Category>(model);
+            await _repo.Update(category);
+        }
     }
 }

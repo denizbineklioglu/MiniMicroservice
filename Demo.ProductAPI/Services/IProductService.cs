@@ -11,5 +11,6 @@ namespace Demo.ProductAPI.Services
         Task CreateProduct(ProductAddRequestDto model);
         Task<Product> GetById(int id);
         Task DeleteProduct(int id);
+        Task UpdateProduct(ProductUpdateDto model);
     }
 }

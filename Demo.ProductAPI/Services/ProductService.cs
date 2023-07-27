@@ -38,5 +38,11 @@ namespace Demo.ProductAPI.Services
             var products = await _repo.GetList();
             return _mapper.Map<IEnumerable<ProductListReponse>>(products);
         }
+
+        public async Task UpdateProduct(ProductUpdateDto model)
+        {
+            var product = _mapper.Map<Product>(model);
+            await _repo.Update(product);
+        }
     }
 }

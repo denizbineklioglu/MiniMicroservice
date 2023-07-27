@@ -1,5 +1,6 @@
 ﻿using Demo.ProductAPI.Services;
 using Demo.ProductAPI.Services.dtos;
+using Demo.ProductAPI.Services.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
@@ -62,6 +63,16 @@ namespace Demo.ProductAPI.Controllers
             return BadRequest();
         }
 
+        [HttpPut("[action]")]
+        public async Task<IActionResult> UpdateProduct(ProductUpdateDto model)
+        {
+            if (ModelState.IsValid)
+            {
+                await _service.UpdateProduct(model);
+                return Ok($"{model.ProductID} numaralı ürün güncellenmiştir.");
+            }
+            return BadRequest();
+        }
 
     }
 }

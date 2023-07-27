@@ -10,5 +10,6 @@ namespace Demo.ProductAPI.Services
         Task DeleteCategory(int id);
         Task<Category> GetById(int id);
         Task<CategoryUpdateResponse> GetCategoryForUpdate(int id);
+        Task UpdateCategory(CategoryUpdateDto model);
     }
 }

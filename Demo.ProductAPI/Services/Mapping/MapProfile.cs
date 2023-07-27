@@ -14,6 +14,9 @@ namespace Demo.ProductAPI.Services.Mapping
 
             CreateMap<Product, ProductListReponse>();
             CreateMap<ProductAddRequestDto, Product>();
+
+            CreateMap<ProductUpdateDto, Product>();
+            CreateMap<CategoryUpdateDto, Category>();
         }
     }
 }

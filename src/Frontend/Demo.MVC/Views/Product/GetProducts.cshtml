@@ -6,11 +6,10 @@
 <h1>Ürünler</h1>
 
 <div class="row">
-    <div class="col-md-12">
 
+    <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Kurslar</h5>
                 @if (Model.Any())
                 {
                     <table class="table table-striped table-bordered">
@@ -19,7 +18,7 @@
                                 <th>Resim</th>
                                 <th>Ad</th>
                                 <th>Fiyat</th>
-                                <th>Süre</th>
+                                <th>Miktar</th>
                                 <th>İşlemler</th>
                             </tr>
                         </thead>
@@ -33,9 +32,9 @@
                                     <td>@item.Quantity</td>
                                     @*<td>@item.Category.CategoryName</td>*@
                                     <td>
-                                        <a asp-controller="Product" asp-action="Update" asp-route-id="@item.ProductID" class="btn btn-success btn-sm">Güncelle</a>
+                                        <a asp-controller="Product" asp-action="UpdateProduct" asp-route-id="@item.ProductID" class="btn btn-success btn-sm">Güncelle</a>
 
-                                        <a asp-controller="Product" asp-action="Delete" asp-route-id="@item.ProductID" class="btn btn-danger btn-sm">Sil</a>
+                                        <a asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@item.ProductID" class="btn btn-danger btn-sm">Sil</a>
                                     </td>
                                 </tr>
                             }
@@ -48,6 +47,7 @@
                         Ürün Bulunamadı
                     </div>
                 }
+                <a href="/Product/CreateProduct" class="btn btn-secondary">Ürün Ekle</a><br />
             </div>
         </div>
     </div>

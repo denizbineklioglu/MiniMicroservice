@@ -61,10 +61,14 @@ namespace Demo.ProductAPI.Controllers
         }
 
         [HttpPut("[action]")]
-        public async Task<IActionResult> UpdateCategory(int id)
+        public async Task<IActionResult> UpdateCategory(CategoryUpdateDto model)
         {
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                await _service.UpdateCategory(model);
+                return Ok($"{model.CategoryID} numaralı kategori güncellenmiştir.");
+            }
+            return BadRequest();
         }
-
     }
 }
